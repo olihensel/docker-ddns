@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  ddns:
+    build: .
+    container_name: ddns
+    restart: ${RESTART_MODE}
+    environment:
+      - SHARED_SECRET=${SHARED_SECRET}
+      - ZONE=${ZONE}
+      - RECORD_TTL=30
+    ports:
+      - "18082:8080"
+      - "53:53"
+      - "53:53/udp"
